@@ -255,7 +255,7 @@ namespace Ryujinx.HLE.HOS.Services.Am.AppletAE.AllSystemAppletProxiesService.Sys
             return ResultCode.Success;
         }
 
-        [CommandCmif(45)]
+        [CommandCmif(45)] // 10.0.0+
         // SetManagedDisplayLayerSeparationMode(u32)
         public ResultCode SetManagedDisplayLayerSeparationMode(ServiceCtx context)
         {
