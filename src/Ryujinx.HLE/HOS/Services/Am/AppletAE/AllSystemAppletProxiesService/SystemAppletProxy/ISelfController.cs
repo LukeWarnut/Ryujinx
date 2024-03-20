@@ -36,6 +36,7 @@ namespace Ryujinx.HLE.HOS.Services.Am.AppletAE.AllSystemAppletProxiesService.Sys
 #pragma warning disable IDE0052 // Remove unread private member
         private bool _albumImageTakenNotificationEnabled = false;
         private bool _recordVolumeMuted = false;
+        private bool _managedDisplayLayerSeparationMode = true;
 
         private uint _screenShotImageOrientation = 0;
 #pragma warning restore IDE0052
@@ -250,6 +251,19 @@ namespace Ryujinx.HLE.HOS.Services.Am.AppletAE.AllSystemAppletProxiesService.Sys
 
             context.ResponseData.Write(displayLayerId);
             context.ResponseData.Write(recordingLayerId);
+
+            return ResultCode.Success;
+        }
+
+        [CommandCmif(45)]
+        // SetManagedDisplayLayerSeparationMode(u32)
+        public ResultCode SetManagedDisplayLayerSeparationMode(ServiceCtx context)
+        {
+            bool displayLayerSeparationMode = context.RequestData.ReadBoolean();
+
+            Logger.Stub?.PrintStub(LogClass.ServiceAm, new { displayLayerSeparationMode });
+
+            _managedDisplayLayerSeparationMode = displayLayerSeparationMode;
 
             return ResultCode.Success;
         }
